@@ -1,5 +1,6 @@
-## CPU-Simulator GUI
-A grahical user interface application with these components: CPU Simulator, QR code and Barcode Generator.
+# CPU-Simulator GUI
+A GUI application designed to simulate CPU scheduling algorithms.
+Project for Operating Systems Course.
 
-## License
+# License
 This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/).
