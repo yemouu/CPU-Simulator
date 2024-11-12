@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "CPU-Schedulers"
+version = "0.0.1"
+description = "CPU Scheduler GUI to Compare CPU Schedulers"
+authors = [
+	{email = "dev@lilac.pink"}
+]
+maintainers = [
+	{email = "dev@lilac.pink"}
+]
+readme = "readme.md"
+license = {file = "license"}
+classifiers = [
+	"License :: OSI Approved :: MIT License",
+	"Private :: DO Not Upload"
+]
+
+[project.gui-scripts]
+cpu-schedulers = "cpu_schedulers.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/yemouu/CPU-Simulator-GUI"
+Repository = "https://github.com/yemouu/CPU-Simulator-GUI"
+Issues = "https://github.com/yemouu/CPU-Simulator-GUI/issues"
+
+[tool.hatch.build]
+exclude = [
+	"flake.nix",
+	"flake.lock",
+	"nix"
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+extend-select = ["I"]
