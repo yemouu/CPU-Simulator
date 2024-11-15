@@ -36,3 +36,7 @@ class Process:
 
         if self.time_left == 0:
             self._done = True
+
+
+def processes_str(processes: list[Process], separator: str = ", ") -> str:
+    return separator.join(str(process) for process in processes)

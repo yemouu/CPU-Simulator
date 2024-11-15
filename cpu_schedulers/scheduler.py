@@ -10,16 +10,18 @@ class Scheduler:
         self._time: int = 0
 
     def new_arrivals(self) -> list[Process]:
-        new = filter(
-            lambda process: process.arrival_time == self._time,
-            self._processes,
+        new = list(
+            filter(
+                lambda process: process.arrival_time == self._time,
+                self._processes,
+            )
         )
 
         self._processes = list(
             filter(
                 lambda process: process.arrival_time > self._time,
-                self._processes
-            )
+                self._processes,
+            ),
         )
 
         return new
