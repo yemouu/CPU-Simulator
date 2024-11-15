@@ -19,8 +19,14 @@ classifiers = [
 	"Private :: DO Not Upload"
 ]
 
-[project.gui-scripts]
+[project.scripts]
 cpu-schedulers = "cpu_schedulers.__main__:main"
+
+[project.gui-scripts]
+cpu-schedulers-gui = "cpu_schedulers.gui:main"
+
+[project.optional-dependencies]
+gui = [ "pyside6>=6.8.0.2" ]
 
 [project.urls]
 Homepage = "https://github.com/yemouu/CPU-Simulator-GUI"

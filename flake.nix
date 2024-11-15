@@ -23,6 +23,7 @@
             (with python3Packages; [
               build
               hatchling
+              pyside6
             ])
           ];
         };
