@@ -6,6 +6,8 @@ class Process:
         self._time_left: int = duration
 
         self._done: bool = False
+        self._wait_time: int = 0
+        self._completion_time: int = 0
 
         self._id: int = Process._next_id
         Process._next_id += 1
@@ -21,6 +23,10 @@ class Process:
         return self._arrival_time
 
     @property
+    def completion_time(self) -> int:
+        return self._completion_time
+
+    @property
     def is_done(self) -> bool:
         return self._done
 
@@ -28,7 +34,14 @@ class Process:
     def time_left(self) -> int:
         return self._time_left
 
-    def step(self) -> None:
+    @property
+    def wait_time(self) -> int:
+        return self._wait_time
+
+    def wait(self) -> int:
+        self._wait_time += 1
+
+    def step(self, current_system_time: int) -> None:
         if self.is_done:
             return
 
@@ -36,6 +49,7 @@ class Process:
 
         if self.time_left == 0:
             self._done = True
+            self._completion_time = current_system_time
 
 
 def processes_str(processes: list[Process], separator: str = ", ") -> str:
