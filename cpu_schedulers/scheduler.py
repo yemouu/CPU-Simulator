@@ -38,21 +38,10 @@ class Scheduler:
         return float(sum) / float(len(self._processes_done))
 
     def new_arrivals(self) -> list[Process]:
-        new = list(
-            filter(
-                lambda process: process.arrival_time == self._time,
-                self._processes,
-            )
-        )
+        new_arrivals = [process for process in self._processes if process.arrival_time == self._time]
+        self._processes = [process for process in self._processes if process.arrival_time > self._time]
 
-        self._processes = list(
-            filter(
-                lambda process: process.arrival_time > self._time,
-                self._processes,
-            ),
-        )
-
-        return new
+        return new_arrivals
 
     def increment_time(self, amount: int = 1) -> None:
         self._time += amount
