@@ -1,3 +1,5 @@
+from typing import override
+
 from .process import Process, processes_str
 from .scheduler import Scheduler
 
@@ -6,6 +8,7 @@ class FirstComeFirstServe(Scheduler):
     def __init__(self, processes: list[Process]):
         super().__init__(processes)
 
+    @override
     def tick(self) -> bool:
         new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")

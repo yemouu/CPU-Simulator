@@ -1,3 +1,5 @@
+from typing import override
+
 from .process import Process, processes_str
 from .scheduler import Scheduler
 
@@ -11,6 +13,7 @@ class RoundRobin(Scheduler):
         if self._time_quantum < 1:
             raise ValueError("Time Quantum is less than one")
 
+    @override
     def tick(self) -> bool:
         print(f"Time Quantum: {self._time_quantum}")
         print(f"Time Quantum Left: {self._time_quantum_left}")

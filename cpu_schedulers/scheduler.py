@@ -9,8 +9,8 @@ class Scheduler:
         self._processes: list[Process] = processes
         self._ready_queue: deque[Process] = deque()
 
-        self._time: int = 0
         self._idle_time: int = 0
+        self._time: int = 0
 
     def calculate_cpu_usage(self) -> float:
         return float(self._time - self._idle_time) / float(self._time)
