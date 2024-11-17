@@ -1,6 +1,6 @@
 from typing import override
 
-from .process import Process, processes_str
+from .process import Process, ProcessState, processes_str
 from .scheduler import Scheduler
 
 
@@ -35,7 +35,7 @@ class RoundRobin(Scheduler):
 
         if self._ready_queue:
             self._ready_queue[0].step(self._time)
-            if self._ready_queue[0].is_done:
+            if self._ready_queue[0].process_state == ProcessState.DONE:
                 print(f"{self._ready_queue[0]} is done executing")
                 self._processes_done.append(self._ready_queue.popleft())
                 self._time_quantum_left = self._time_quantum
