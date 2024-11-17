@@ -33,7 +33,7 @@ class Scheduler:
 
         sum: int = 0
         for process in self._processes_done:
-            sum += (process.completion_time - process.arrival_time)
+            sum += process.completion_time - process.arrival_time
 
         return float(sum) / float(len(self._processes_done))
 
@@ -62,4 +62,4 @@ class Scheduler:
             process.wait()
 
     def tick(self) -> bool:
-        pass
+        raise NotImplementedError

@@ -7,7 +7,7 @@ class FirstComeFirstServe(Scheduler):
         super().__init__(processes)
 
     def tick(self) -> bool:
-        new_arrivals = list(self.new_arrivals())
+        new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")
 
         self._ready_queue.extend(new_arrivals)

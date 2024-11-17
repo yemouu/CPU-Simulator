@@ -15,7 +15,7 @@ class RoundRobin(Scheduler):
         print(f"Time Quantum: {self._time_quantum}")
         print(f"Time Quantum Left: {self._time_quantum_left}")
 
-        new_arrivals = list(self.new_arrivals())
+        new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")
 
         self._ready_queue.extend(new_arrivals)
