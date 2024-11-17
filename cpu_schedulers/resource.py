@@ -1,7 +1,7 @@
 class Resource:
     _next_id: int = 0
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._id: int = Resource._next_id
         Resource._next_id += 1
 
