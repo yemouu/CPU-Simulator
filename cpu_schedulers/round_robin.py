@@ -20,9 +20,11 @@ class RoundRobin(Scheduler):
         print(f"Time Quantum: {self._time_quantum}")
         print(f"Time Quantum Left: {self._time_quantum_left}")
 
+        self.deadlock_detection()
+
         new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")
-
+        self.make_resource_claims(new_arrivals)
         self._ready_queue.extend(new_arrivals)
 
         if self._time_quantum_left == 0:
@@ -43,6 +45,7 @@ class RoundRobin(Scheduler):
             match process_state:
                 case ProcessState.DONE:
                     print(f"{self._ready_queue[0]} is done executing")
+                    self.revoke_resource_claims(self._ready_queue[0])
                     self._processes_done.append(self._ready_queue.popleft())
                     self._time_quantum_left = self._time_quantum
                     print(f"Time Quantum Left: {self._time_quantum_left}")

@@ -1,7 +1,7 @@
 from collections import deque
 
 from .process import Process, ProcessState
-from .resource_manager import ResourceManager
+from .resource_manager import AvoidantResourceAllocationGraph, ResourceAllocationGraph, ResourceManager
 
 
 class Scheduler:
@@ -14,6 +14,7 @@ class Scheduler:
         self._idle_time: int = 0
         self._time: int = 0
 
+        self._resource_manager = resource_manager
         for process in self._processes:
             process.resource_manager = resource_manager
 
@@ -90,6 +91,27 @@ class Scheduler:
             for process in self._wait_list
             if process.process_state == ProcessState.RESOURCE_WAIT or process.process_state == ProcessState.SLEEP
         ]
+
+    def deadlock_detection(self) -> None:
+        """Detect a deadlock after it happens
+
+        This requires using the ResourceAllocationGraph or a child
+        class as your Resource Manager.
+        """
+        if isinstance(self._resource_manager, ResourceAllocationGraph):
+            if self._resource_manager.detect_deadlock():
+                print("Deadlock Detected!")
+            else:
+                print("No deadlock has occured.")
+
+    def make_resource_claims(self, processes: list[Process]) -> None:
+        if isinstance(self._resource_manager, AvoidantResourceAllocationGraph):
+            for process in processes:
+                self._resource_manager.add_process_claims(process.p_id, process.needed_resources())
+
+    def revoke_resource_claims(self, process: Process) -> None:
+        if isinstance(self._resource_manager, AvoidantResourceAllocationGraph):
+            self._resource_manager.remove_process_claims(process.p_id)
 
     def print_metrics(self) -> None:
         print(

@@ -12,9 +12,13 @@ class FirstComeFirstServe(Scheduler):
     @override
     def tick(self) -> bool:
         print(f"\nNew Tick ({self._time})\n")
+
+        self.deadlock_detection()
+
         new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")
 
+        self.make_resource_claims(new_arrivals)
         self._ready_queue.extend(new_arrivals)
         print(f"Ready Queue: {processes_str(self._ready_queue)}")
         print(f"Wait List: {processes_str(self._wait_list)}")
@@ -26,6 +30,7 @@ class FirstComeFirstServe(Scheduler):
             match process_state:
                 case ProcessState.DONE:
                     print(f"{self._ready_queue[0]} is done executing")
+                    self.revoke_resource_claims(self._ready_queue[0])
                     self._processes_done.append(self._ready_queue.popleft())
                 case ProcessState.READY:
                     pass
