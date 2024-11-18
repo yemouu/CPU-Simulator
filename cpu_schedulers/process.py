@@ -59,6 +59,10 @@ class Process:
         Process._next_id = 0
 
     @property
+    def p_id(self) -> int:
+        return self._id
+
+    @property
     def arrival_time(self) -> int:
         return self._arrival_time
 
@@ -103,6 +107,9 @@ class Process:
     @property
     def process_state(self) -> ProcessState:
         return self._process_state
+
+    def needed_resources(self) -> list[int]:
+        return [task.data for task in self._tasks if task.action == TaskAction.RESOURCE_REQUEST]
 
     def wait(self) -> ProcessState:
         match self.process_state:
