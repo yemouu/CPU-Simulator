@@ -125,12 +125,12 @@ class Process:
                     self._held_resources.append(resource_id)
                     self._process_state = ProcessState.READY
             case ProcessState.SLEEP:
-                self._io_wait_time += 1
-                self._io_wait_time_left -= 1
-
                 if self._io_wait_time_left == 0:
                     del self._tasks[0]
                     self._process_state = ProcessState.READY
+
+                self._io_wait_time += 1
+                self._io_wait_time_left -= 1
             case _:
                 raise NotImplementedError
 
