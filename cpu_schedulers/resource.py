@@ -8,6 +8,10 @@ class Resource:
         self._available = True
         self._process_id: int | None = None
 
+    @staticmethod
+    def reset_ids() -> None:
+        Resource._next_id = 0
+
     @property
     def r_id(self) -> int:
         return self._id
