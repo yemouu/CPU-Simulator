@@ -31,9 +31,9 @@ def main() -> None:
 
     fcfs_1 = FirstComeFirstServe(processes_1, resource_manager_1)
 
-    # print("---------- fcfs_1 ----------")
-    # while fcfs_1.tick():
-    #     pass
+    print("---------- fcfs_1 ----------")
+    while fcfs_1.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -225,9 +225,9 @@ def main() -> None:
 
     fcfs_3 = FirstComeFirstServe(processes_3, resource_manager_3)
 
-    # print("---------- fcfs_3 ----------")
-    # while fcfs_3.tick():
-    #     pass
+    print("---------- fcfs_3 ----------")
+    while fcfs_3.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -248,9 +248,9 @@ def main() -> None:
 
     fcfs_4 = FirstComeFirstServe(processes_4, resource_manager_4)
 
-    # print("---------- fcfs_4 ----------")
-    # while fcfs_4.tick():
-    #     pass
+    print("---------- fcfs_4 ----------")
+    while fcfs_4.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -345,9 +345,9 @@ def main() -> None:
 
     fcfs_5 = FirstComeFirstServe(processes_5, resource_manager_5)
 
-    # print("---------- fcfs_5 ----------")
-    # while fcfs_5.tick():
-    #     pass
+    print("---------- fcfs_5 ----------")
+    while fcfs_5.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -442,9 +442,9 @@ def main() -> None:
 
     fcfs_6 = FirstComeFirstServe(processes_6, resource_manager_6)
 
-    # print("---------- fcfs_6 ----------")
-    # while fcfs_6.tick():
-    #     pass
+    print("---------- fcfs_6 ----------")
+    while fcfs_6.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -465,9 +465,9 @@ def main() -> None:
 
     rr_1 = RoundRobin(processes_7, resource_manager_7, 2)
 
-    # print("----------- rr_1 -----------")
-    # while rr_1.tick():
-    #     pass
+    print("----------- rr_1 -----------")
+    while rr_1.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -562,9 +562,9 @@ def main() -> None:
 
     rr_2 = RoundRobin(processes_8, resource_manager_8, 2)
 
-    # print("----------- rr_2 -----------")
-    # while rr_2.tick():
-    #     pass
+    print("----------- rr_2 -----------")
+    while rr_2.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -659,9 +659,9 @@ def main() -> None:
 
     rr_3 = RoundRobin(processes_9, resource_manager_9, 2)
 
-    # print("----------- rr_3 -----------")
-    # while rr_3.tick():
-    #     pass
+    print("----------- rr_3 -----------")
+    while rr_3.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -682,9 +682,9 @@ def main() -> None:
 
     rr_4 = RoundRobin(processes_10, resource_manager_10, 2)
 
-    # print("----------- rr_4 -----------")
-    # while rr_4.tick():
-    #     pass
+    print("----------- rr_4 -----------")
+    while rr_4.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -779,9 +779,9 @@ def main() -> None:
 
     rr_5 = RoundRobin(processes_11, resource_manager_11, 2)
 
-    # print("----------- rr_5 -----------")
-    # while rr_5.tick():
-    #     pass
+    print("----------- rr_5 -----------")
+    while rr_5.tick():
+        pass
 
     Process.reset_ids()
     Resource.reset_ids()
@@ -882,6 +882,36 @@ def main() -> None:
 
     Process.reset_ids()
     Resource.reset_ids()
+
+    resource_manager_13: ResourceManager = AvoidantResourceAllocationGraph((Resource(), Resource()))
+    processes_13: list[Process] = [
+        Process(
+            0,
+            5,
+            [
+                Task(TaskAction.RESOURCE_REQUEST, 0),
+                Task(TaskAction.IO, 1),
+                Task(TaskAction.RESOURCE_REQUEST, 1),
+                Task(TaskAction.IO, 1),
+            ],
+        ),
+        Process(
+            0,
+            5,
+            [
+                Task(TaskAction.RESOURCE_REQUEST, 1),
+                Task(TaskAction.IO, 1),
+                Task(TaskAction.RESOURCE_REQUEST, 0),
+                Task(TaskAction.IO, 1),
+            ],
+        ),
+    ]
+
+    rr_7 = RoundRobin(processes_13, resource_manager_13, 2)
+
+    print("----------- rr_7 -----------")
+    while rr_7.tick():
+        pass
 
 
 if __name__ == "__main__":
