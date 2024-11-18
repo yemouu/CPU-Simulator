@@ -13,7 +13,8 @@ class FirstComeFirstServe(Scheduler):
     def tick(self) -> bool:
         print(f"\nNew Tick ({self._time})\n")
 
-        self.deadlock_detection()
+        if self.deadlock_detection():
+            return False
 
         new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")

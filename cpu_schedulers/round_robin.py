@@ -20,7 +20,8 @@ class RoundRobin(Scheduler):
         print(f"Time Quantum: {self._time_quantum}")
         print(f"Time Quantum Left: {self._time_quantum_left}")
 
-        self.deadlock_detection()
+        if self.deadlock_detection():
+            return False
 
         new_arrivals = self.new_arrivals()
         print(f"New Processes: {processes_str(new_arrivals)}")

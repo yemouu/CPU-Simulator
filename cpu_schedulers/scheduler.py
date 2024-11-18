@@ -92,7 +92,7 @@ class Scheduler:
             if process.process_state == ProcessState.RESOURCE_WAIT or process.process_state == ProcessState.SLEEP
         ]
 
-    def deadlock_detection(self) -> None:
+    def deadlock_detection(self) -> bool | None:
         """Detect a deadlock after it happens
 
         This requires using the ResourceAllocationGraph or a child
@@ -101,8 +101,10 @@ class Scheduler:
         if isinstance(self._resource_manager, ResourceAllocationGraph):
             if self._resource_manager.detect_deadlock():
                 print("Deadlock Detected!")
+                return True
             else:
                 print("No deadlock has occured.")
+                return False
 
     def make_resource_claims(self, processes: list[Process]) -> None:
         if isinstance(self._resource_manager, AvoidantResourceAllocationGraph):
