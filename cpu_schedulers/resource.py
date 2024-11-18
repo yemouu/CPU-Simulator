@@ -25,5 +25,5 @@ class Resource:
         return self._available
 
     def toggle_availability(self, process_id) -> None:
-        self._process_id = process_id if self._available else None
-        self._available = not self._available
+        self._process_id = process_id if self.available else None
+        self._available = not self.available
