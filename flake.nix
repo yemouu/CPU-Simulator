@@ -22,7 +22,6 @@
             (python3.withPackages (py-pkgs: with py-pkgs; [
               build
               hatchling
-              pyside6
             ]))
             ruff
           ];

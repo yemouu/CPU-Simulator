@@ -7,7 +7,7 @@ pkgs.python3Packages.buildPythonApplication {
   src = ../../.;
 
   build-system = with pkgs.python3Packages; [ hatchling ];
-  dependencies = with pkgs.python3Packages; [ pyside6 ];
+  # dependencies = with pkgs.python3Packages; [ ];
   # nativeCheckInputs = [ ];
 
   meta = {
