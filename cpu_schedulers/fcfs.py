@@ -6,11 +6,18 @@ from .scheduler import Scheduler
 
 
 class FirstComeFirstServe(Scheduler):
+    """First-Come, First Serve Scheduler Implementation"""
+
     def __init__(self, processes: list[Process], resource_manager: ResourceManager) -> None:
         super().__init__(processes, resource_manager)
 
     @override
     def tick(self) -> bool:
+        """First-Come, First-Serve implementation
+
+        The first process that enters the system will run until
+        completion without being interrutped (unless it yields).
+        """
         print(f"\nNew Tick ({self._time})\n")
 
         if self.deadlock_detection():
@@ -35,7 +42,7 @@ class FirstComeFirstServe(Scheduler):
                     self._processes_done.append(self._ready_queue.popleft())
                 case ProcessState.READY:
                     pass
-                case ProcessState.RESOURCE_WAIT:
+                case ProcessState.WAIT:
                     print(f"{self._ready_queue[0]} is waiting on a resource")
                     self._wait_list.append(self._ready_queue.popleft())
                 case ProcessState.SLEEP:

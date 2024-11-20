@@ -6,6 +6,8 @@ from .scheduler import Scheduler
 
 
 class RoundRobin(Scheduler):
+    """Round Robin Scheduler Implementation"""
+
     def __init__(self, processes: list[Process], resource_manager: ResourceManager, time_quantum: int) -> None:
         super().__init__(processes, resource_manager)
         self._time_quantum = time_quantum
@@ -16,6 +18,12 @@ class RoundRobin(Scheduler):
 
     @override
     def tick(self) -> bool:
+        """Round Robin Implementation
+
+        Everytime the time quantum is reached, a new process will be
+        placed in the first position of the ready queue to be executed.
+        Processes take turns executing.
+        """
         print(f"\nNew Tick ({self._time})\n")
         print(f"Time Quantum: {self._time_quantum}")
         print(f"Time Quantum Left: {self._time_quantum_left}")
@@ -52,7 +60,7 @@ class RoundRobin(Scheduler):
                     print(f"Time Quantum Left: {self._time_quantum_left}")
                 case ProcessState.READY:
                     tick_time_quantum = True
-                case ProcessState.RESOURCE_WAIT:
+                case ProcessState.WAIT:
                     print(f"{self._ready_queue[0]} is waiting on a resource")
                     self._wait_list.append(self._ready_queue.popleft())
                     self._time_quantum_left = self._time_quantum

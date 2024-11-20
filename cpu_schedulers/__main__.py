@@ -15,6 +15,8 @@ from .round_robin import RoundRobin
 
 
 def main() -> None:
+    """Driver to collect information from our scheduler implementations"""
+
     resource_manager_1: ResourceManager = ResourceManager((Resource(),))
     processes_1: list[Process] = [
         Process(3, 4, []),
@@ -46,8 +48,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -58,7 +60,7 @@ def main() -> None:
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -84,7 +86,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -110,7 +112,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
                 Task(TaskAction.RESOURCE_RELEASE, 0),
             ],
@@ -143,8 +145,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -153,9 +155,9 @@ def main() -> None:
             4,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -181,7 +183,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -207,7 +209,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
             ],
@@ -263,8 +265,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -275,7 +277,7 @@ def main() -> None:
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -301,7 +303,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -327,7 +329,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
                 Task(TaskAction.RESOURCE_RELEASE, 0),
             ],
@@ -360,8 +362,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -370,9 +372,9 @@ def main() -> None:
             4,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -398,7 +400,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -424,7 +426,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
             ],
@@ -480,8 +482,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -492,7 +494,7 @@ def main() -> None:
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -518,7 +520,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -544,7 +546,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
                 Task(TaskAction.RESOURCE_RELEASE, 0),
             ],
@@ -577,8 +579,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -587,9 +589,9 @@ def main() -> None:
             4,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -615,7 +617,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -641,7 +643,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
             ],
@@ -697,8 +699,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -709,7 +711,7 @@ def main() -> None:
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -735,7 +737,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -761,7 +763,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
                 Task(TaskAction.RESOURCE_RELEASE, 0),
             ],
@@ -794,8 +796,8 @@ def main() -> None:
             [
                 Task(TaskAction.NONE, -1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(2, 1, [Task(TaskAction.NONE, -1)]),
@@ -804,9 +806,9 @@ def main() -> None:
             4,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -832,7 +834,7 @@ def main() -> None:
             3,
             [
                 Task(TaskAction.NONE, -1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.NONE, -1),
             ],
         ),
@@ -858,7 +860,7 @@ def main() -> None:
             5,
             3,
             [
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
             ],
@@ -890,9 +892,9 @@ def main() -> None:
             5,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
         Process(
@@ -900,9 +902,9 @@ def main() -> None:
             5,
             [
                 Task(TaskAction.RESOURCE_REQUEST, 1),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
                 Task(TaskAction.RESOURCE_REQUEST, 0),
-                Task(TaskAction.IO, 1),
+                Task(TaskAction.YIELD, 1),
             ],
         ),
     ]
