@@ -66,6 +66,13 @@ scheduler = FirstComeFirstServe(processes, resource_manager)
 # scheduler = RoundRobin(processes, resource_manager, 2)
 ```
 
+You then need to call the `.tick()` method on the scheduler until the scheduler completes all processes.
+
+```py
+while scheduler .tick():
+    pass
+```
+
 All together this would look like the following inside the `main()` function of `cpu_schedulers/__main__.py`:
 
 ```py
@@ -85,6 +92,9 @@ processes = [
 scheduler = FirstComeFirstServe(processes, resource_manager)
 # To use round robin with a time quantum of 2:
 # scheduler = RoundRobin(processes, resource_manager, 2)
+
+while scheduler .tick():
+    pass
 ```
 
 # License
